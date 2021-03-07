@@ -1,0 +1,10 @@
+.grid-elements__title {
+    font-size: 1.5rem;
+    line-height: 1.812rem;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
