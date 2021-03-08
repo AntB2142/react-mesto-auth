@@ -1,9 +1,9 @@
 function ImagePopup(props) {
     return (
-        <section className={props.isOpen ? `popup__opened popup popup_${props.name}` : `popup popup_${props.name}`}>
+        <section className={`popup popup_${props.name} ${props.card.link.length > 0 && "popup__opened"}`}>
         <div className="popup__full">
             <button type="button" className="popup__close" onClick={props.onClose}></button>
-            <img alt={props.card.alt} src={props.card.src} className="popup__img"/>
+            <img alt={props.card.name} src={props.card.link} className="popup__img"/>
             <p className="popup__full-title">{props.card.name}</p>
         </div>
     </section>

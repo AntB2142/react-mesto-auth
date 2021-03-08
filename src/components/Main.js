@@ -1,5 +1,5 @@
 import React from 'react'
-import {api} from '../utils/Api.js'
+import {api} from '../utils/api.js'
 import Card from './Card.js';
 
 function Main(props) {
@@ -49,7 +49,7 @@ function Main(props) {
 
             <ul className="grid-elements">
             {cards.map((card) => {
-             return <Card onCardClick={props.onCardClick} key={card._id} name={card.name} link={card.link} likes={card.likes} alt={`Картинка ${card.name}`}/>
+             return <Card onCardClick={props.onCardClick} key={card._id} card={card}/>
           })}
             </ul>
 
