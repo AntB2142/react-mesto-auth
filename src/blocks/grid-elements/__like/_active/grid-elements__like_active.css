@@ -1,3 +1,14 @@
 .grid-elements__like_active {
     background-image: url("../../../../images/like-active.svg");
+    width: 20.76px;
+    height: 18.13px;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-bottom: 3px;
+    outline-width: 0;
 }

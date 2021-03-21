@@ -29,6 +29,7 @@
 @import url(./blocks/grid-elements/__element/grid-elements__element.css);
 @import url(./blocks/grid-elements/__like/_active/grid-elements__like_active.css);
 @import url(./blocks/grid-elements/__delete/grid-elements__delete.css);
+@import url(./blocks/grid-elements/__delete/_hidden/grid-elements__delete_hidden.css);
 @import url(./blocks/grid-elements/__like-number/grid-elements__like-number.css);
 @import url(./blocks/grid-elements/__like-container/grid-elements__like-container.css);
 

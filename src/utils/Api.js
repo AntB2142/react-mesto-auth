@@ -18,7 +18,7 @@ class Api {
                 return result;
             });
     }
-    getProfileInfo() {
+    getUserInfo() {
         return fetch(`${this._url}users/me`, {
                 headers: this._headers
             })
@@ -34,7 +34,7 @@ class Api {
             })
 
     }
-    editProfile(formData) {
+    setUserInfo(formData) {
         return fetch(`${this._url}users/me`, {
                 method: 'PATCH',
                 headers: this._headers,
@@ -50,15 +50,27 @@ class Api {
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
     }
-    postCard(formData) {
+    addCard(formData) {
         return fetch(`${this._url}cards`, {
-                method: 'POST',
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: formData.name,
-                    link: formData.link
-                })
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: formData.name,
+                link: formData.link
             })
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+}
+    removeCard(id) {
+        return fetch(`${this._url}cards/${id}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
             .then(res => {
                 if (res.ok) {
                     return res.json();
@@ -66,48 +78,24 @@ class Api {
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
     }
-    removeCard(item) {
-        return fetch(`${this._url}cards/${item._id}`, {
-                method: "DELETE",
-                headers: this._headers,
-            })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+    changeLikeCardStatus(cardId, isLiked) {
+        return fetch(`${this._url}cards/likes/${cardId}`, {
+            method: isLiked ? 'PUT' : 'DELETE',
+            headers: this._headers
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
     }
-    putLike(id) {
-        return fetch(`${this._url}cards/likes/${id}`, {
-                method: "PUT",
-                headers: this._headers,
-            })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-    }
-    deleteLike(id) {
-        return fetch(`${this._url}cards/likes/${id}`, {
-                method: "DELETE",
-                headers: this._headers,
-            })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-    }
-    updateAvatar(avatarLink) {
+    setUserAvatar(formData) {
         return fetch(`${this._url}users/me/avatar`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
-                    avatar: avatarLink.link
+                    avatar: formData.avatar
                 })
             })
             .then(res => {
@@ -125,4 +113,4 @@ export const api = new Api({
         authorization: '485f0781-93d2-4545-87ad-d84942ee0ff3',
         'Content-Type': 'application/json'
     }
-})
+});

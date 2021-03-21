@@ -11,6 +11,7 @@
     flex-shrink: 0;
     transition: .4s ease;
     margin-bottom: 3px;
+    outline-width: 0;
 }
 
 .grid-elements__like:hover {
