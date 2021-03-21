@@ -26,7 +26,8 @@ function AddPlacePopup(props) {
         setName('');
         setLink('');
       }, [props.isOpen]);
-    return (
+    
+      return (
         <PopupWithForm
             isOpen={props.isOpen}
             onClose={props.onClose}
