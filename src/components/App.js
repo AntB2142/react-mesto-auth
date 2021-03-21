@@ -113,6 +113,7 @@ function App() {
             onAddPlace = { handleAddPlaceClick }
             onCardClick = { handleCardClick }
            /> 
+          
           <Footer />
 
           <EditAvatarPopup 
