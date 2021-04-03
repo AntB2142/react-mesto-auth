@@ -1,0 +1,14 @@
+.login__subtext {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    margin: 0 auto 80px;
+    text-decoration: none;
+}
+
+.login__subtext:hover {
+    opacity: 0.6;
+}

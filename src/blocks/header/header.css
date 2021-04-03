@@ -3,6 +3,9 @@
     width: calc(100% - 2 * 200px);
     margin-top: 45px;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 @media screen and (max-width:768px) {
