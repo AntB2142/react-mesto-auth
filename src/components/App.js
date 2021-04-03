@@ -153,26 +153,23 @@ function App() {
       setIsInfooTooltipOpen(false);
     }
   
-    function tokenCheck () {
-      const token = localStorage.getItem('token');
-      if (token){
-        auth.getContent(token)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setEmail(res.data.email);
-            history.push('/');
-          }
-        })
-      } else {
-        setLoggedIn(false);
-      }
-    };
-     
     useEffect(() => {
-      tokenCheck();
-    });
+      const token = localStorage.getItem('token');
+  
+      if (token) {
+        auth.getContent(token)
+          .then(res => {
+            if (res) {
+              setEmail(res.data.email);
+              setLoggedIn(true);
+              history.push('/');
+            }
+          })
+          .catch(err => console.log(err));
+      }
+    }, [history])
 
+    
     return ( 
       <CurrentUserContext.Provider value={currentUser}>    
         <div className="App"> 
