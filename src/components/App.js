@@ -14,6 +14,8 @@ import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
 import Footer from './Footer';
+import InfoTooltip from './InfoTooltip';
+
 
 function App() {
 
@@ -22,7 +24,10 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isInfooTooltipOpen, setIsInfooTooltipOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({ name: '', link: '' });
-    const [currentUser, setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({
+      name: '',
+      about: ''
+    });
     const [cards, setCards] = useState([]);
     const [email, setEmail] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
@@ -50,8 +55,7 @@ function App() {
 
     function handleCardDelete(removedCard) {
         api.removeCard(removedCard._id).then(() => {
-                const newArr = cards.filter(card => card._id !== removedCard._id);
-                setCards(newArr);
+          setCards((cards) => cards.filter((card) => card._id !== removedCard._id))
             })
             .catch((err) => console.log(err));
     }
@@ -135,6 +139,7 @@ function App() {
             setIsInfooTooltipOpen(true);
           }
         })
+        .catch(err => console.log(err));   
     };
   
     function onSignOut() {
@@ -149,20 +154,23 @@ function App() {
     }
   
     function tokenCheck () {
-      if (localStorage.getItem('token')){
-        const token = localStorage.getItem('token');
-        auth.getContent(token).then((res) => {
+      const token = localStorage.getItem('token');
+      if (token){
+        auth.getContent(token)
+        .then((res) => {
           if (res) {
             setLoggedIn(true);
             setEmail(res.data.email);
             history.push('/');
           }
         })
+      } else {
+        setLoggedIn(false);
       }
     };
      
     useEffect(() => {
-      tokenCheck()
+      tokenCheck();
     });
 
     return ( 
@@ -189,17 +197,13 @@ function App() {
             <Route path='/sign-in' render={() => 
                <Login
                  onLogin={onLogin}
-                 isOpen={isInfooTooltipOpen}
-                 successRegistration={successRegistration}
-                 onClose={onInfooTooltipClose}
+              
                   />} 
                />
             <Route path='/sign-up' render={() => 
                <Register
                  onRegister={onRegister}
-                 isOpen={isInfooTooltipOpen}
-                 successRegistration={successRegistration}
-                 onClose={onInfooTooltipClose}
+                
                   />} 
                 />
           </Switch>
@@ -228,6 +232,11 @@ function App() {
             card = { selectedCard }
             onClose = { closeAllPopups }
           />
+           <InfoTooltip 
+              isOpen={isInfooTooltipOpen}
+              successRegistration={successRegistration}
+              onClose={onInfooTooltipClose}
+            />
 
         </div>
        

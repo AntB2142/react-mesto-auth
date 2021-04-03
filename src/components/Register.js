@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import InfoTooltip from './InfoTooltip';
+
 
 const Register = (props) => {
     const [email, setEmail] = useState('');
@@ -44,11 +44,7 @@ const Register = (props) => {
                 <button onClick={handleRegisterSubmit} className="login__button login__button_register">Зарегистрироваться</button>
             </form>
             <Link to="/sign-in" className="login__subtext">Уже зарегистрированы? Войти</Link>
-            <InfoTooltip 
-              isOpen={props.isOpen} 
-              successRegistration={props.successRegistration} 
-              onClose={props.onClose} 
-            />
+           
         </section>
     )
 }

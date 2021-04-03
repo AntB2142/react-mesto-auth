@@ -37,13 +37,21 @@ class Auth {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          }
+            "Authorization": `Bearer ${token}`
+          },
         })
-        .then(res => res.json())
-        .then(data => data)
-      } 
+        .then((res) => this._checkResponse(res))
+          .then(data => {
+            return data;
+          })
+          .catch((err) => {
+            console.log(err);
+            return err;
+          });
+      }
+    
 };
+
 
 const auth = new Auth('https://auth.nomoreparties.co');
 
