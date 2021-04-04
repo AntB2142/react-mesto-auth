@@ -32,26 +32,20 @@ class Auth {
         .then((res) => this._checkResponse(res))
     };
 
-    getContent = (token) => {
-        return fetch(`${this._url}/users/me`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${token}`
-          },
-        })
-        .then((res) => this._checkResponse(res))
-          .then(data => {
-            return data;
-          })
-          .catch((err) => {
-            console.log(err);
-            return err;
-          });
-      }
-    
+    getContent = (token) => { 
+      return fetch(`${this._url}/users/me`, { 
+        method: 'GET', 
+        headers: { 
+          'Content-Type': 'application/json', 
+          "Authorization": `Bearer ${token}` 
+        }, 
+      }) 
+      .then((res) => this._checkResponse(res)) 
+        .then(data => { 
+          return data; 
+        }) 
+    } 
 };
-
 
 const auth = new Auth('https://auth.nomoreparties.co');
 
